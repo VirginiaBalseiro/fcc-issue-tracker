@@ -37,9 +37,10 @@ module.exports = function (app) {
         updated_on: new Date(),
         open: true,
       };
-    if (!issue.issue_title, !issue.issue_text, !issue.created_by){
-      res.send("Missing values!")
+    if (!issue.issue_title || !issue.issue_text || !issue.created_by){
+      res.send("missing values");
     } else {
+      console.log('title', issue.issue_title);
     MongoClient.connect(CONNECTION_STRING, function(err, db) {
       db.collection(project).insertOne(issue, function(err, doc){
         //console.log(doc);
